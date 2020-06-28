@@ -41,12 +41,17 @@ $(function () {
                 return layer.msg(res.message)
             }
             layer.msg('注册成功，请登录')
+            $('#form_reg [name=username]').val('')
+            $('#form_reg [name=password]').val('')
+            $('#form_reg [name=repassword]').val('')
             $('#link_login').click()
+
         })
     })
     // 监听登陆点击事件
     $('#form_login').submit(function (e) {
-        e.preventDefault()
+        // console.log(this); // () => {}  如果是换成箭头函数 这里的this指向上一级：document
+        e.preventDefault();
         $.ajax({
             type: 'POST',
             url: '/api/login',
@@ -59,7 +64,6 @@ $(function () {
                 localStorage.setItem('token', res.token)
                 location.href = '/bigNews/index.html'
             }
-
         })
     })
 })
