@@ -29,6 +29,7 @@ $(function () {
             }
         }
     })
+
     // 监听注册点击事件
     $('#form_reg').on('submit', function (e) {
         e.preventDefault()
@@ -48,6 +49,7 @@ $(function () {
 
         })
     })
+
     // 监听登陆点击事件
     $('#form_login').submit(function (e) {
         // console.log(this); // () => {}  如果是换成箭头函数 这里的this指向上一级：document
