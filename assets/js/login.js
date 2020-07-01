@@ -46,7 +46,6 @@ $(function () {
             $('#form_reg [name=password]').val('')
             $('#form_reg [name=repassword]').val('')
             $('#link_login').click()
-
         })
     })
 
