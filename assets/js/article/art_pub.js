@@ -16,7 +16,7 @@ $(function () {
                 }
                 // 调用模板引擎，渲染分类的下拉菜单
                 var htmlStr = template('tpl-cate', res)
-                $('[name=cate_id]').html(htmlStr)
+                $('[name = cate_id]').html(htmlStr)
                 // 一定要记得调用 form.render() 方法
                 form.render()
             }
@@ -59,21 +59,52 @@ $(function () {
     const ART_PUB = '已发布'
     const ART_DRAFT = '草稿'
     let state = ART_PUB
+
     // 给存为草稿按钮注册点击事件
     $('#btn_save_draft').on('click', function () {
         state = ART_DRAFT
     })
+
     // 给form表单注册提交事件
     $('#form_pub').on('submit', function (e) {
         // 阻止默认提交
         e.preventDefault()
         // 创建FormData对象
         let fd = new FormData($(this)[0])
+        console.log(this);
         // 将文章的发布状态存到fd中
         fd.append('state', state)
-        FormData.forEach((v, k) => {
-            console.log(k, v);
+        $image.cropper('getCroppedCanvas', {
+            // 创建画布
+            width: 400,
+            height: 280
+        }).toBlob(function (blob) {
+            // 将文件存储到fd
+            fd.append('cover_img', blob)
+            publishArticle(fd)
         })
     })
+
+    // 发布文章
+    function publishArticle(fd) {
+        $.ajax({
+            method: 'POST',
+            url: '/my/article/add',
+            data: fd,
+            // 注意：如果向服务器提交的是 FormData 格式的数据，
+            // 必须添加以下两个配置项
+            contentType: false,
+            processData: false,
+            success: function (res) {
+                if (res.status !== 0) {
+                    return layer.msg('发布文章失败！')
+                }
+                debugger
+                layer.msg('发布文章成功！')
+                // 发布文章成功后，跳转到文章列表页面
+                location.href = '/bigNews/article/art_list.html'
+            }
+        })
+    }
 
 })

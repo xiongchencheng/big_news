@@ -62,7 +62,8 @@
                             <!-- 选择封面按钮 -->
                             <button id="btnChooseImage" type="button" class="layui-btn layui-btn-danger">选择封面</button>
                             <!-- 隐藏的文件选择框 -->
-                            <input type="file" id="coverFile" style="display: none;" accept="image/png,image/jpeg,image/gif" />
+                            <input type="file" id="coverFile" style="display: none;"
+                                accept="image/png,image/jpeg,image/gif" />
                         </div>
                     </div>
                 </div>
@@ -80,7 +81,7 @@
     <script type="text/html" id="tpl-cate">
         <option value="">请选择文章类别</option>
         {{each data}}
-        <option value="{{$value.Id}}">{{$value.name}}</option>
+        <option value="{{$value.id}}">{{$value.name}}</option>
         {{/each}}
     </script>
 
