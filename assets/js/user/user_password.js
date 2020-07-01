@@ -28,7 +28,7 @@ $('.layui-form').on('submit', function (e) {
         success: function (res) {
             // const {status,message} = res
             if (res.status !== 0) {
-                console.log(res);
+                // console.log(res);
                 return layer.msg(res.message)
             }
             layer.msg('更新密码成功！')

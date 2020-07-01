@@ -19,7 +19,7 @@ $(function () {
     // 给上传文件的按钮绑定change事件
     let layer = layui.layer
     $('#file').on('change', function (e) {
-        console.log(e);
+        // console.log(e);
         // 上传图片后图片在files伪数组中 并且length为1
         let fileslist = e.target.files
         if (fileslist.length === 0) {
@@ -34,11 +34,11 @@ $(function () {
             .attr('src', imgUrl)  // 重新设置图片路径
             .cropper(options)     // 重新初始化裁剪区域
 
-        
+
     })
 
     $('#sure').on('click', function () {
-       // 创建一个 Canvas 画布，将 Canvas 画布上的内容，转化为 base64 格式的字符串
+        // 创建一个 Canvas 画布，将 Canvas 画布上的内容，转化为 base64 格式的字符串
         let dataURL = $image
             .cropper('getCroppedCanvas', {
                 // 创建一个 Canvas 画布

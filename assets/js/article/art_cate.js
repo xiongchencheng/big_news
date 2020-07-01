@@ -60,7 +60,7 @@ $(function () {
         $.ajax({
             method: 'GET',
             // url: '/my/article/cates/' + id,
-            url: `'/my/article/cates/' ${id}`,
+            url: `/my/article/cates/${id}`,
             success: function (res) {
                 // console.log(res);
                 form.val('form-edit', res.data)
@@ -96,7 +96,7 @@ $(function () {
             $.ajax({
                 method: 'GET',
                 // url: '/my/article/deletecate/' + id,
-                url: `'/my/article/deletecate/'${id}`,
+                url: `/my/article/deletecate/${id}`,
                 success: function (res) {
                     if (res.status !== 0) {
                         return layer.msg(res.message)
