@@ -59,7 +59,8 @@ $(function () {
         // console.log(id);
         $.ajax({
             method: 'GET',
-            url: '/my/article/cates/' + id,
+            // url: '/my/article/cates/' + id,
+            url: `'/my/article/cates/' ${id}`,
             success: function (res) {
                 // console.log(res);
                 form.val('form-edit', res.data)
@@ -87,20 +88,23 @@ $(function () {
 
     // 给删除按钮绑定点击事件
     $('tbody').on('click', '.btn-delete', function () {
-        var id = $(this).attr('data-id')
+        let id = $(this).attr('data-id')
         // console.log(id);
 
         // 提示用户是否要删除
         layer.confirm('确认删除?', { icon: 3, title: '提示' }, function (index) {
             $.ajax({
                 method: 'GET',
-                url: '/my/article/deletecate/' + id,
+                // url: '/my/article/deletecate/' + id,
+                url: `'/my/article/deletecate/'${id}`,
                 success: function (res) {
                     if (res.status !== 0) {
                         return layer.msg(res.message)
                     }
                     layer.msg('删除分类成功！')
+                    // 关闭弹出层
                     layer.close(index)
+                    // 刷新文章页面
                     initArtCateList()
                 }
             })
