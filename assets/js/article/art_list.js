@@ -18,6 +18,7 @@ $(function () {
 
         return y + '-' + m + '-' + d + ' ' + hh + ':' + mm + ':' + ss
     }
+
     // 定义补零的函数
     function padZero(n) {
         return n > 9 ? n : '0' + n
@@ -30,6 +31,8 @@ $(function () {
         state: '' // 文章的发布状态
     }
 
+
+
     initTable()
     // 获取文章列表数据的方法
     function initTable() {
@@ -41,6 +44,7 @@ $(function () {
                 if (res.status !== 0) {
                     return layer.msg('获取文章列表失败！')
                 }
+
                 // 使用模板引擎渲染页面的数据
                 let htmlStr = template('tpl-table', res)
                 $('tbody').html(htmlStr)
@@ -49,6 +53,7 @@ $(function () {
             }
         })
     }
+
 
     initCate()
     // 初始化文章分类的方法
@@ -84,14 +89,36 @@ $(function () {
 
     // 定义渲染分页的方法
     function renderPage(total) {
+        console.log(q);
+
         // 调用 laypage.render() 方法来渲染分页的结构
         laypage.render({
             elem: 'pageBox', // 分页容器的 Id
-            count: total, // 总数据条数
+            count: total, // 总数据条数  
             limit: q.pagesize, // 每页显示几条数据
-            curr: q.pagenum // 设置默认被选中的分页
-        })
+            curr: q.pagenum, // 设置默认被选中的分页
+            layout: ['count', 'limit', 'prev', 'page', 'next', 'skip'],
+            limits: [2, 3, 5, 10],// 每页展示多少条
+            // 分页发生切换的时候，触发 jump 回调
+            jump: function (obj, first) {
+                // 可以通过 first 的值，来判断是通过哪种方式，触发的 jump 回调
+                // 如果 first 的值为 true，证明是方式2触发的
+                // 否则就是方式1触发的
+                console.log(first)
+                console.log(obj)
+                console.log(obj.curr)
+                // 把最新的页码值，赋值到 q 这个查询参数对象中
+                q.pagenum = obj.curr
+                // 根据最新的 q 获取对应的数据列表，并渲染表格
+                // initTable()
+                if (!first) {
+                    initTable()
+                }
+            }
+            })
     }
+
+
 
 
 })
