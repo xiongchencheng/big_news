@@ -99,7 +99,7 @@ $(function () {
                 if (res.status !== 0) {
                     return layer.msg('发布文章失败！')
                 }
-                debugger
+                // debugger
                 layer.msg('发布文章成功！')
                 // 发布文章成功后，跳转到文章列表页面
                 location.href = '/bigNews/article/art_list.html'

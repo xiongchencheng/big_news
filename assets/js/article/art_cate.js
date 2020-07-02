@@ -10,6 +10,7 @@ $(function () {
             url: '/my/article/cates',
             success: function (res) {
                 // console.log(res);
+                // debugger
                 var htmlStr = template('tpl-table', res)
                 $('tbody').html(htmlStr)
             }
