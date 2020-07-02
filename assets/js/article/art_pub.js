@@ -71,7 +71,7 @@ $(function () {
         e.preventDefault()
         // 创建FormData对象
         let fd = new FormData($(this)[0])
-        console.log(this);
+        // console.log(this);
         // 将文章的发布状态存到fd中
         fd.append('state', state)
         $image.cropper('getCroppedCanvas', {
@@ -99,8 +99,9 @@ $(function () {
                 if (res.status !== 0) {
                     return layer.msg('发布文章失败！')
                 }
-                // debugger
+                debugger
                 layer.msg('发布文章成功！')
+                console.log(location.href)
                 // 发布文章成功后，跳转到文章列表页面
                 location.href = '/bigNews/article/art_list.html'
             }
